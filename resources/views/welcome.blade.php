@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @vite(entrypoints: 'resources/css/app.css')
+    @vite('resources/css/app.css') {{-- Pastikan ini mengarah ke file CSS Tailwind Anda --}}
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,12 +14,12 @@
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
         rel="stylesheet">
-    <title>Document</title>
+    <title>Yayasan Mahkota Cahaya Abadi</title>
 </head>
 
 <body>
 
-    <div class="bg-white">
+    <div class="bg-white min-h-screen flex flex-col">
         <header class="absolute inset-x-0 top-0 z-50" x-data="{ open: false }">
             <nav class="flex items-center justify-between p-6 lg:px-8 transition-colors duration-300"
                 aria-label="Global">
@@ -27,7 +27,7 @@
                     <a href="#" class="-m-1.5 p-1.5">
                         <span class="sr-only">Your Company</span>
                         <img class="h-8 w-auto"
-                            src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
+                            src="{{ asset('images/logo.png') }}" {{-- foto logo --}}
                             alt="Logo">
                     </a>
                 </div>
@@ -61,7 +61,8 @@
                     </button>
                 </div>
             </nav>
-
+            
+            {{-- Mobile menu, toggle classes based on menu state. --}}
             <div class="lg:hidden" role="dialog" aria-modal="true" x-show="open"
                 x-transition:enter="duration-150 ease-out" x-transition:enter-start="opacity-0 scale-95"
                 x-transition:enter-end="opacity-100 scale-100" x-transition:leave="duration-100 ease-in"
@@ -72,8 +73,8 @@
                     <div class="flex items-center justify-between">
                         <a href="#" class="-m-1.5 p-1.5">
                             <span class="sr-only">Your Company</span>
-                            <img class="h-8 w-auto"
-                                src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
+                            <img class="h-10 w-auto"
+                                src="{{ asset('images/logo.png') }}" 
                                 alt="">
                         </a>
                         <button @click="open = false" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700">
@@ -107,14 +108,10 @@
             </div>
         </header>
 
-        <div class="relative isolate px-6 pt-14 lg:px-8">
-            <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
-                aria-hidden="true">
-                <div class="relative left-[calc(50%-11rem)] aspect-1155/678 w-144.5 -translate-x-1/2 rotate-30 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-288.75"
-                    style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
-                </div>
-            </div>
-            <div class="relative isolate px-6 pt-14 lg:px-8">
+        {{-- Menambahkan pt-20 ke main untuk jarak dari navbar. Sesuaikan nilai ini jika navbar Anda lebih tinggi/rendah. --}}
+        <main class="flex-grow pt-20">
+            <div class="relative isolate pt-14 pb-20 lg:pb-32"> {{-- Menyesuaikan padding atas dan bawah --}}
+                {{-- Background blurs (Tetap sebagai dekorasi) --}}
                 <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
                     aria-hidden="true">
                     <div class="relative left-[calc(50%-11rem)] aspect-1155/678 w-144.5 -translate-x-1/2 rotate-30 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-288.75"
@@ -122,143 +119,131 @@
                     </div>
                 </div>
 
-                <div class="max-w-7xl mx-auto flex flex-col justify-center items-center gap-14">
+                <div class="max-w-screen-xl mx-auto px-6 flex flex-col justify-center items-center gap-8 lg:gap-14">
                     <div class="text-center w-full">
-                        <span class="text-zinc-800 text-5xl font-bold font-montserrat leading-[75px]">
+                        <span class="text-zinc-800 text-3xl sm:text-4xl lg:text-5xl font-bold font-[montserrat] leading-normal lg:leading-[75px]">
                             Tempat terbaik untuk </br>tumbuh bersama
                         </span></br>
-                        <span class="text-amber-300 text-5xl font-bold font-[hidayatullah] leading-[75px]">
+                        <span class="text-amber-300 text-3xl sm:text-4xl lg:text-5xl font-bold font-[hidayatullah] leading-normal lg:leading-[75px]">
                             Al-Qur'an
                         </span>
-                        <span class="text-zinc-800 text-5xl font-bold font-montserrat leading-[75px]">dan</span>
-                        <span class="text-purple-800 text-5xl font-bold font-[hidayatullah] leading-[75px]">
+                        <span class="text-zinc-800 text-3xl sm:text-4xl lg:text-5xl font-bold font-[montserrat] leading-normal lg:leading-[75px]">dan</span>
+                        <span class="text-purple-800 text-3xl sm:text-4xl lg:text-5xl font-bold font-[hidayatullah] leading-normal lg:leading-[75px]">
                             Akhlak Mulia
                         </span>
                     </div>
 
                     <div class="text-center text-zinc-500 text-base font-normal font-open-sans">
-                        Temukan program pembelajaran Al-Qur'an yang membangun karakter, meningkatkan keimanan, <br />dan
+                        Temukan program pembelajaran Al-Qur'an yang membangun karakter, meningkatkan keimanan, <br class="hidden sm:inline"/>dan
                         menyiapkan generasi unggul untuk masa depan.
                     </div>
 
-                    <div class="flex justify-center gap-6 mt-6">
-                        <div
-                            class="w-44 h-14 p-2.5 bg-purple-800 rounded-[10px] inline-flex justify-center items-center gap-2.5">
+                    <div class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mt-6">
+                        <div class="w-full sm:w-44 h-14 p-2.5 bg-purple-800 rounded-[10px] inline-flex justify-center items-center gap-2.5">
                             <div class="text-white text-sm font-bold font-open-sans">Daftar Sekarang</div>
                         </div>
-                        <div
-                            class="w-44 h-14 p-2.5 outline-[1.50px] outline-offset-[-0.75px] outline-purple-800 rounded-[10px] inline-flex justify-center items-center gap-2.5">
+                        <div class="w-full sm:w-44 h-14 p-2.5 outline-[1.50px] outline-offset-[-0.75px] outline-purple-800 rounded-[10px] inline-flex justify-center items-center gap-2.5">
                             <div class="text-purple-800 text-sm font-bold font-open-sans">Pelajari Program</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-        </div>
-        <div class="w-[1290px] h-96 relative mx-auto mt-16 flex items-center justify-between">
-            <div class="w-[596px] py-[35px] inline-flex flex-col justify-start items-start gap-5">
-                <div class="size- p-2.5 inline-flex justify-center items-center gap-2.5">
-                    <div class="justify-start text-zinc-800 text-4xl font-bold font-montserrat leading-[75px]">
-                        Tentang Yayasan</div>
-                </div>
-                <div class="self-stretch justify-start text-zinc-500 text-base font-normal font-open-sans leading-9">
-                    Didirikan pada tahun 2016, yayasan ini bermula dari komunitas Relawan Qur'an Matraman untuk
-                    mengembangkan misi sosial dan dakwah<br /><br />Kami kemudian bertransformasi menjadi yayasan yang
-                    resmi untuk menyelenggarakan program pembelajaran Al-Qur'an dan kegiatan sosial bagi masyarakat
-                </div>
-            </div>
-
-            <div class="w-[600px] h-[300px] bg-gray-200 flex items-center justify-center rounded-lg overflow-hidden">
-                <p class="text-gray-500 text-center text-lg">Tempat Gambar</p>
-            </div>
-
-            <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
-                aria-hidden="true">
-                <div class="relative left-[calc(50%+3rem)] aspect-1155/678 w-144.5 -translate-x-1/2 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-288.75"
-                    style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
-                </div>
-            </div>
-        </div>
-
-        <section class="w-[1440px] mx-auto py-20 px-6 flex items-center justify-center gap-20 mt-20">
-            <div
-                class="flex-shrink-0 w-[470px] h-[500px] bg-gray-200 flex items-end justify-center rounded-lg overflow-hidden">
-                <p class="text-gray-500 text-center text-lg mb-4">Tempat Gambar Muslimah Berdoa</p>
-            </div>
-
-            <div class="flex-grow flex flex-col gap-8">
-                <div class="flex flex-col gap-4">
-                    <span class="text-purple-800 text-base font-bold font-open-sans">Arah Kami Melangkah</span>
-                    <h2 class="text-zinc-800 text-4xl font-bold font-montserrat leading-tight">
-                        Berpijak pada Nilai <span class="text-purple-800">Qur'ani</span><br>
-                        Bergerak untuk Umat
-                    </h2>
-                    <p class="text-zinc-500 text-base font-normal font-open-sans leading-relaxed">
-                        Menjadi cahaya bagi umat dengan arah yang berpijak pada nilai-nilai Qur'ani dan semangat
-                        perubahan sosial
-                    </p>
+            <section class="max-w-screen-xl mx-auto px-6 mt-10 lg:mt-16 flex flex-col lg:flex-row items-center justify-between h-auto lg:h-96 gap-8">
+                <div class="w-full lg:w-[596px] py-[15px] lg:py-[35px] inline-flex flex-col justify-start items-start gap-5">
+                    <div class="size- p-2.5 inline-flex justify-center items-center gap-2.5">
+                        <div class="justify-start text-zinc-800 text-3xl lg:text-4xl font-bold font-[montserrat] leading-[75px]">
+                            Tentang Yayasan
+                        </div>
+                    </div>
+                    <div class="self-stretch justify-start text-zinc-500 text-base font-normal font-open-sans leading-relaxed">
+                        Didirikan pada tahun 2016, yayasan ini bermula dari komunitas Relawan Qur'an Matraman untuk
+                        mengembangkan misi sosial dan dakwah.<br /><br />Kami kemudian bertransformasi menjadi yayasan yang
+                        resmi untuk menyelenggarakan program pembelajaran Al-Qur'an dan kegiatan sosial bagi masyarakat.
+                    </div>
                 </div>
 
-                <div class="flex gap-8 justify-center">
-                    <div class="w-80 h-64 relative bg-purple-800 rounded-2xl overflow-hidden shadow-lg">
-                        <div
-                            class="left-1/2 -translate-x-1/2 top-[17px] absolute text-amber-300 text-xl font-semibold font-montserrat">
-                            Visi</div>
-                        <div
-                            class="w-80 h-48 left-0 top-[55px] absolute bg-[#EDE7F4] rounded-bl-2xl rounded-br-2xl overflow-hidden">
-                            <div class="p-4 flex items-center justify-center h-full">
-                                <p class="text-center text-purple-800 text-sm font-semibold font-open-sans">Mewujudkan
-                                    Masyarakat religius dan mandiri</p>
+                <img class="w-full h-[200px] lg:h-[300px] lg:w-[600px] bg-gray-200 flex items-center justify-center rounded-lg overflow-hidden flex-shrink-0"
+                    src="{{ asset('images/aboutus.png') }}" {{-- foto tentang yayasan --}}
+                    alt="Tentang Yayasan Mahkota Cahaya Abadi">
+
+            </section>
+
+            <section class="max-w-screen-xl mx-auto py-10 lg:py-20 px-6 flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-20 mt-10 lg:mt-20 rounded-2xl">
+                <img class="flex-shrink-0 w-full lg:w-[470px] h-[300px] lg:h-[500px] bg-gray-200 flex items-end justify-center rounded-lg overflow-hidden"
+                src="{{ asset(path: 'images/visimisi.png') }}" {{-- foto visi dan misi() --}}
+                    alt="Visi dan Misi Yayasan Mahkota Cahaya Abadi">
+
+                <div class="flex-grow flex flex-col gap-8">
+                    <div class="flex flex-col gap-4">
+                        <span class="text-purple-800 text-base font-bold font-open-sans">Arah Kami Melangkah</span>
+                        <h2 class="text-zinc-800 text-3xl lg:text-4xl font-bold font-[montserrat] leading-tight">
+                            Berpijak pada Nilai <span class="text-purple-800">Qur'ani</span><br>
+                            Bergerak untuk Umat
+                        </h2>
+                        <p class="text-zinc-500 text-base font-normal font-open-sans leading-relaxed">
+                            Menjadi cahaya bagi umat dengan arah yang berpijak pada nilai-nilai Qur'ani dan semangat perubahan sosial
+                        </p>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-8">
+                        <div class="w-full sm:w-80 h-64 relative bg-purple-800 rounded-2xl overflow-hidden shadow-lg">
+                            <div class="left-1/2 -translate-x-1/2 top-[17px] absolute text-amber-300 text-xl font-semibold font-[montserrat]">Visi</div>
+                            <div class="w-full h-48 left-0 top-[55px] absolute bg-[#EDE7F4] rounded-bl-2xl rounded-br-2xl overflow-hidden">
+                                <div class="p-4 flex items-center justify-center h-full">
+                                    <p class="text-center text-purple-800 text-sm font-semibold font-open-sans">Mewujudkan Masyarakat religius dan mandiri</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="w-full sm:w-80 h-64 relative bg-amber-300 rounded-2xl overflow-hidden shadow-lg">
+                            <div class="left-1/2 -translate-x-1/2 top-[17px] absolute text-purple-800 text-xl font-semibold font-[montserrat]">Misi</div>
+                            <div class="w-full h-48 left-0 top-[55px] absolute bg-[#EDE7F4] rounded-bl-2xl rounded-br-2xl overflow-hidden">
+                                <ul class="p-4 flex flex-col justify-center h-full list-none space-y-2">
+                                    <li class="flex items-start gap-2 text-purple-800 text-sm font-normal font-open-sans">
+                                        <div class="w-6 h-6 flex-shrink-0 flex items-center justify-center">
+                                            <span class="text-xl">👥</span>
+                                        </div>
+                                        Membina masyarakat yang rukun dan agamis
+                                    </li>
+                                    <li class="flex items-start gap-2 text-purple-800 text-sm font-normal font-open-sans">
+                                        <div class="w-6 h-6 flex-shrink-0 flex items-center justify-center">
+                                            <span class="text-xl">🎓</span>
+                                        </div>
+                                        Menyiapkan SDM yang aktif berkontribusi untuk masyarakat sesuai kapasitasnya
+                                    </li>
+                                    <li class="flex items-start gap-2 text-purple-800 text-sm font-normal font-open-sans">
+                                        <div class="w-6 h-6 flex-shrink-0 flex items-center justify-center">
+                                            <span class="text-xl">🧩</span>
+                                        </div>
+                                        Mensinergikan potensi masyarakat untuk pemerataan sosial
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
-
-                    <div class="w-80 h-64 relative bg-amber-300 rounded-2xl overflow-hidden shadow-lg">
-                        <div
-                            class="left-1/2 -translate-x-1/2 top-[17px] absolute text-purple-800 text-xl font-semibold font-montserrat">
-                            Misi</div>
-                        <div
-                            class="w-80 h-48 left-0 top-[55px] absolute bg-[#EDE7F4] rounded-bl-2xl rounded-br-2xl overflow-hidden">
-                            <ul class="p-4 flex flex-col justify-center h-full list-none space-y-2">
-                                <li class="flex items-start gap-2 text-purple-800 text-sm font-normal font-open-sans">
-                                    <div class="w-6 h-6 flex-shrink-0 flex items-center justify-center">
-                                        <span class="text-xl">👥</span>
-                                    </div>
-                                    Membina masyarakat yang rukun dan agamis
-                                </li>
-                                <li class="flex items-start gap-2 text-purple-800 text-sm font-normal font-open-sans">
-                                    <div class="w-6 h-6 flex-shrink-0 flex items-center justify-center">
-                                        <span class="text-xl">🎓</span>
-                                    </div>
-                                    Menyiapkan SDM yang aktif berkontribusi untuk masyarakat sesuai kapasitasnya
-                                </li>
-                                <li class="flex items-start gap-2 text-purple-800 text-sm font-normal font-open-sans">
-                                    <div class="w-6 h-6 flex-shrink-0 flex items-center justify-center">
-                                        <span class="text-xl">🧩</span>
-                                    </div>
-                                    Mensinergikan potensi masyarakat untuk pemerataan sosial
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
-            </div>
-        </section>
-        <footer class="w-[1440px] mx-auto py-16 mt-20">
-            <div class="max-w-[1290px] mx-auto px-6">
-                <div class="flex items-start">
-                    <div class="flex-shrink-0 w-72 flex flex-col gap-7 mr-auto">
+            </section>
+        </main>
+
+        <footer class="max-w-screen-xl mx-auto px-6 py-10 lg:py-16 mt-10 lg:mt-20 w-full">
+            <div class="max-w-[1290px] mx-auto">
+                <div class="flex flex-col lg:flex-row items-start gap-10 lg:gap-0">
+
+                    <div class="flex-shrink-0 w-full lg:w-72 flex flex-col gap-7 mb-8 lg:mb-0 lg:mr-auto">
                         <div class="flex items-center gap-3">
-                            <img src="/path/to/your/yayasan-logo.svg" alt="Yayasan Mahkota Cahaya Abadi Logo"
-                                class="h-24 w-auto object-contain">
+                            <img src="{{ asset('images/logo.png') }}" {{-- foto logo() --}}
+                                alt="Yayasan Mahkota Cahaya Abadi Logo" class="h-16 w-auto object-contain">
+                            <div class="text-purple-800 text-xl font-bold font-open-sans leading-tight">
+                                Yayasan<br />Mahkota<br />Cahaya Abadi</div>
                         </div>
                         <p class="text-zinc-800 text-base font-normal font-open-sans leading-relaxed">Yayasan
                             Mahkota Cahaya Abadi adalah lembaga sosial-keagamaan yang membina generasi Qur’ani
                             melalui pendidikan, dakwah, dan kegiatan sosial.</p>
                     </div>
 
-                    <div class="flex items-start gap-[59px]">
-                        <div class="flex-shrink-0 w-auto flex flex-col gap-4">
+                    <div class="flex flex-col sm:flex-row items-start gap-10 sm:gap-[59px] w-full lg:w-auto">
+                        <div class="flex-shrink-0 w-full sm:w-auto flex flex-col gap-4">
                             <h3 class="text-zinc-800 text-base font-bold font-open-sans">Navigasi Cepat</h3>
                             <a href="#"
                                 class="text-zinc-800 text-base font-normal font-open-sans hover:text-purple-800 transition-colors duration-200">Beranda</a>
@@ -275,7 +260,7 @@
                                 Kami</a>
                         </div>
 
-                        <div class="flex-shrink-0 w-60 flex flex-col gap-5">
+                        <div class="flex-shrink-0 w-full sm:w-60 flex flex-col gap-5">
                             <h3 class="text-zinc-800 text-base font-bold font-open-sans">Informasi Kontak</h3>
                             <div class="flex items-start gap-2.5">
                                 <svg class="w-6 h-6 text-purple-800 flex-shrink-0" fill="currentColor"
@@ -299,7 +284,7 @@
                     </div>
                 </div>
 
-                <div class="w-full border-t-2 border-purple-800 my-10"></div>
+                <div class="w-full border-t-2 border-purple-800 my-8 lg:my-10"></div>
 
                 <div class="text-center text-zinc-800 text-xs font-normal font-open-sans">Copyright @2025 by Yayasan
                     Mahkota Cahaya Abadi. All Right Reserved</div>
