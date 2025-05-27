@@ -1,0 +1,29 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+@font-face {
+    font-family: 'Hidayatullah';
+    /* Ubah jalur ini */
+    src: url('/public/font/hidayatullah-DEMO.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* Tambahkan ini untuk performa loading font yang lebih baik */
+}
+
+/* Jika Anda masih memiliki kelas ini, pastikan font-weight-nya valid */
+.Open_Sans {
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal; /* Contoh: ganti 'weight' menjadi 'normal' atau angka */
+    font-style: normal;
+    font-variation-settings:"width" 100;
+}
